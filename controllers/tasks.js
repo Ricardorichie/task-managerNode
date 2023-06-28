@@ -35,6 +35,7 @@ const getSingleTask = async (req, res) => {
 };
 
 const updateTask = async (req, res) => {
+  console.log(req.body);
   try {
     const { id: taskID } = req.params;
     const task = await Task.findOneAndUpdate({ _id: taskID }, req.body, {

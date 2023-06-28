@@ -6,7 +6,7 @@ const getAllTasks = async (req, res) => {
   } catch (error) {
     res.status(500).json({ msg: error });
   }
-  res.send("get all tasks");
+  //   res.send("get all tasks");
   //   Task.find();
 };
 

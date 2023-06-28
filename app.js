@@ -8,12 +8,13 @@ const dotenv = require("dotenv").config();
 const port = 3000;
 
 //middleware
+app.use(express.static("./public"));
 app.use(express.json());
 
 app.use("/api/v1/tasks", tasksRoute);
-app.get("/", (req, res) => {
-  res.send("Hello World");
-});
+// app.get("/", (req, res) => {
+//   res.send("Hello World");
+// });
 const start = async () => {
   try {
     await connectDb();

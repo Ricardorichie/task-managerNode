@@ -1,0 +1,8 @@
+{
+  "restartable": "rs",
+  "watch": ["app.js", "routes", "controllers", "models", "db"],
+  "ext": "js",
+  "ignore": [],
+
+  "verbose": true
+}

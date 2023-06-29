@@ -1,5 +1,11 @@
 const Task = require("../models/Task");
 const asyncWrapper = require("../middleware/async");
+const {
+  CustomeAPIError,
+  createCustomError,
+} = require("../errors/custom-error");
+
+//===try catch block is replaced by asyncWrapper in this file===
 
 const getAllTasks = asyncWrapper(async (req, res) => {
   //   try {
@@ -10,7 +16,7 @@ const getAllTasks = asyncWrapper(async (req, res) => {
   //   }
 });
 
-const createTask = asyncWrapper(async (req, res) => {
+const createTask = asyncWrapper(async (req, res, next) => {
   //   try {
   const task = await Task.create(req.body);
   res.status(201).json({ task });
@@ -21,12 +27,18 @@ const createTask = asyncWrapper(async (req, res) => {
   //   Task.find();
 });
 
-const getSingleTask = asyncWrapper(async (req, res) => {
+const getSingleTask = asyncWrapper(async (req, res, next) => {
   //   try {
   const { id: taskID } = req.params;
   const task = await Task.findOne({ _id: taskID });
   if (!task) {
-    return res.status(404).json({ msg: `No task with id: ${taskID}` });
+    // const error = new Error(`No task with id: ${taskID}`);
+    // error.status = 404;
+    // return next(error);
+    //above comment is replaced by below code
+
+    return next(createCustomError(`No task with id: ${taskID}`, 404));
+    // return res.status(404).json({ msg: `No task with id: ${taskID}` });
   }
   res.status(200).json({ task });
   //   } catch (error) {

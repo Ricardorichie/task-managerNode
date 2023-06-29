@@ -5,6 +5,7 @@ const { connectDb } = require("./db/connect");
 const notFound = require("./middleware/not-found");
 const dotenv = require("dotenv").config();
 const port = 3000;
+const errorHandlerMiddleware = require("./middleware/error-handler");
 
 //middleware
 app.use(express.static("./public"));
@@ -12,6 +13,7 @@ app.use(express.json());
 
 app.use("/api/v1/tasks", tasksRoute);
 app.use(notFound);
+app.use(errorHandlerMiddleware);
 // app.get("/", (req, res) => {
 //   res.send("Hello World");
 // });

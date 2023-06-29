@@ -4,7 +4,6 @@ const tasksRoute = require("./routes/tasks");
 const { connectDb } = require("./db/connect");
 const notFound = require("./middleware/not-found");
 const dotenv = require("dotenv").config();
-
 const port = 3000;
 
 //middleware

@@ -20,7 +20,6 @@ app.use(errorHandlerMiddleware);
 const start = async () => {
   try {
     await connectDb();
-    app;
     app.listen(port, () => {
       console.log("Server is running on port: " + port);
     });
